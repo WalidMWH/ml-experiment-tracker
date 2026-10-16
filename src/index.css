@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+/* Makes Tailwind's dark: classes follow the "dark" class on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------
+   DESIGN TOKENS
+   Every color in the app comes from these variables.
+   Light mode is the default; .dark overrides them.
+   To restyle the whole app, change values here only.
+   ------------------------------------------------------------ */
+:root {
+  color-scheme: light;
+  --bg: #eef5f5;          /* page background            */
+  --surface: #ffffff;     /* cards and panels           */
+  --surface-2: #dfecee;   /* tracks, hovers             */
+  --line: #c3d9dc;        /* borders                    */
+  --fg: #031716;          /* main text                  */
+  --muted: #274d60;       /* secondary text             */
+  --accent: #0a7075;      /* buttons, highlights        */
+  --accent-hover: #032f30;
+  --on-accent: #ffffff;   /* text on accent buttons     */
+  --running: #274d60;
+  --done: #0a7075;
+  --failed: #b4474f;
+  --glow-1: rgb(12 150 156 / 0.16);
+  --glow-2: rgb(107 163 190 / 0.22);
+  --grid: rgb(39 77 96 / 0.06);
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: #031716;
+  --surface: #032f30;
+  --surface-2: #0a3f42;
+  --line: #274d60;
+  --fg: #e4f1f1;
+  --muted: #6ba3be;
+  --accent: #0c969c;
+  --accent-hover: #6ba3be;
+  --on-accent: #031716;
+  --running: #6ba3be;
+  --done: #2bb3b9;
+  --failed: #e58a8a;
+  --glow-1: rgb(12 150 156 / 0.20);
+  --glow-2: rgb(39 77 96 / 0.45);
+  --grid: rgb(107 163 190 / 0.05);
+}
+
+/* Turns the variables above into Tailwind classes:
+   bg-surface, text-muted, border-line, bg-accent, text-done ... */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-running: var(--running);
+  --color-done: var(--done);
+  --color-failed: var(--failed);
+
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+}
+
+/* Page background: two soft teal glows over a faint graph-paper grid */
+body {
+  min-height: 100vh;
+  color: var(--fg);
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(55rem 35rem at 90% -10%, var(--glow-1), transparent 65%),
+    radial-gradient(45rem 30rem at -10% 15%, var(--glow-2), transparent 65%),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: auto, auto, 32px 32px, 32px 32px;
+  background-attachment: fixed;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}
