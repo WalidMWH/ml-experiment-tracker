@@ -4,6 +4,7 @@ A web app for tracking machine learning experiments: model, dataset, accuracy, s
 Built for the TNC Group "Web Geliştirme; Yapay Zeka" project during my internship at Software Persona.
 
 **Live demo:** https://ml-experiment-tracker-walid.netlify.app
+![CRUD demo](screenshots/demo.gif)
 
 | Dark mode | Light mode |
 |---|---|
